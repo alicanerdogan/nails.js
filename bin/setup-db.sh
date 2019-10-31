@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DATABASE_CONTAINER_NAME="nails-db"
+DB_NAME="nails-db"
+DB_PASSWORD="postgres"
+DB_PORT="5400"
+
+docker run --name $DATABASE_CONTAINER_NAME -p $DB_PORT:5432 -e POSTGRES_PASSWORD=$DB_PASSWORD -e POSTGRES_DB=$DB_NAME -d postgres:12
