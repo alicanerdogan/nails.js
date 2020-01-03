@@ -14,5 +14,8 @@ export const createSession: RequestHandler = async (req, res, _next) => {
     return;
   }
   const token = await createToken({ email: user.email, id: user.id });
-  res.status(201).send(JSON.stringify({ token }));
+  res
+    .status(201)
+    .contentType("json")
+    .send(JSON.stringify({ token }));
 };

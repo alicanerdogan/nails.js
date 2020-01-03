@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { apiRouter } from "./router/api";
 
-const app = express();
+export const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
@@ -16,4 +16,10 @@ app.use("/api", apiRouter);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const server = app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`)
+);
+
+export async function closeServer() {
+  await new Promise(resolve => server.close(resolve)).then();
+}

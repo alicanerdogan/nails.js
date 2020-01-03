@@ -7,7 +7,7 @@ const rateLimiterOptions = {
   tableName: "api_calls",
   keyPrefix: "", // This can be used to differentiate the different apis
   blockDuration: 10,
-  points: 5, // Number of points
+  points: 10, // Number of points
   duration: 60 // Per second(s)
 };
 
@@ -34,7 +34,7 @@ export async function isUserAllowedToConsumeAPI(userId: number) {
 }
 
 const publicRateLimiter = new RateLimiter.RateLimiterPostgres(
-  { ...rateLimiterOptions, keyPrefix: "ip_" },
+  { ...rateLimiterOptions, points: 5, keyPrefix: "ip_" },
   err => {
     if (err) {
       console.error(err);

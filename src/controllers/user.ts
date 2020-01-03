@@ -14,5 +14,8 @@ export const getUser: AuthorizedRequestHandler = async (
 export const createUser: RequestHandler = async (req, res, _next) => {
   const { email, password } = req.body;
   const user = await UserRegistry.createUser({ email, password });
-  res.status(201).send(JSON.stringify(user));
+  res
+    .status(201)
+    .contentType("json")
+    .send(JSON.stringify(user));
 };

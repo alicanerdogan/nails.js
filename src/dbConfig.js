@@ -1,4 +1,4 @@
-module.exports = {
+const baseConfig = {
   client: "pg",
   version: "12",
   connection: {
@@ -14,3 +14,15 @@ module.exports = {
   },
   pool: { min: 3, max: 7 }
 };
+
+const development = baseConfig;
+const production = baseConfig;
+const test = {
+  ...baseConfig,
+  connection: {
+    ...baseConfig.connection,
+    database: `${baseConfig.connection.database}-test`
+  }
+};
+
+module.exports = { ...baseConfig, development, production, test };
