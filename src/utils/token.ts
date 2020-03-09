@@ -4,7 +4,7 @@ import { User } from "../model/User";
 
 export type JWTPayload = Pick<User, "email" | "id">;
 
-const JWT_OPTIONS = {
+const JWT_OPTIONS: jwt.SignOptions = {
   algorithm: "HS512",
   expiresIn: "7 days",
   issuer: "nailsapp"
